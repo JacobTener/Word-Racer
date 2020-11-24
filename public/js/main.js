@@ -42,7 +42,10 @@ function init() {
 function getWords() {
   fetch("https://random-word-api.herokuapp.com/word?number=200")
     .then((res) => res.json())
-    .then((data) => (words = data));
+    .then((data) => (words = data))
+    .catch(words = [
+      "there was an issue fetching words. Check https://random-word-api.herokuapp.com"
+    ]);
 }
 
 function start() {
@@ -110,6 +113,8 @@ function countdown() {
 function checkStatus() {
   if (!isPlaying && time === 0) {
     message.innerHTML = `Game Over!`;
+    //handle high score local storage logic
+
     score = 0;
   }
 }
